@@ -17,15 +17,14 @@ public class CommandFramerate {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("framerate")
                 .requires(source -> source.hasPermission(2))
-                .then(Commands.literal("framerate")
-                        .then(Commands.argument("player", EntityArgument.player())
-                                .then(Commands.argument("framerate", IntegerArgumentType.integer(0, 2000))
-                                        .executes(context -> {
-                                            ServerPlayerEntity player = EntityArgument.getPlayer(context, "player");
-                                            int framerate = IntegerArgumentType.getInteger(context, "framerate");
-                                            setFramerate(player, framerate);
-                                            return 0;
-                                        })))));
+                .then(Commands.argument("player", EntityArgument.player())
+                        .then(Commands.argument("framerate", IntegerArgumentType.integer(0, 2000))
+                                .executes(context -> {
+                                    ServerPlayerEntity player = EntityArgument.getPlayer(context, "player");
+                                    int framerate = IntegerArgumentType.getInteger(context, "framerate");
+                                    setFramerate(player, framerate);
+                                    return 0;
+                                }))));
     }
 
     private static void setFramerate(ServerPlayerEntity player, int framerate) {
